@@ -10,12 +10,17 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainform.cpp \
+    mainwindow.cpp \
+    readfile.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainform.h \
+    mainwindow.h \
+    readfile.h
 
 FORMS += \
+    mainform.ui \
     mainwindow.ui
 
 # Default rules for deployment.
