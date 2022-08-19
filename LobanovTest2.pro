@@ -9,12 +9,14 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    checkandwritestringlist.cpp \
     main.cpp \
     mainform.cpp \
     mainwindow.cpp \
     readfile.cpp
 
 HEADERS += \
+    checkandwritestringlist.h \
     mainform.h \
     mainwindow.h \
     readfile.h

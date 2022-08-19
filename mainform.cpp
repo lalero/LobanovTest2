@@ -15,8 +15,14 @@ MainForm::MainForm(QWidget *parent) :
     ui->setupUi(this);
 
     ReadFile  *read = new ReadFile(this);
-    connect(this,&MainForm::siganl_readFile,read,&ReadFile::slot_readFile);
+    CheckAndWriteStringList  *checkStringlist = new CheckAndWriteStringList(this);
+
+
+    connect(this,&MainForm::signal_readFile,read,&ReadFile::slot_readFile);
     connect(read,&ReadFile::signal_readFileBack,this,&MainForm::slot_readFileBack);
+
+    connect(this,&MainForm::signal_checkAndWriteStringList,checkStringlist,&CheckAndWriteStringList::slot_checkAndWriteStringList);
+    //connect(read,&ReadFile::signal_readFileBack,this,&MainForm::slot_readFileBack);
 }
 
 MainForm::~MainForm()
@@ -32,7 +38,7 @@ void MainForm::on_pushButton_clicked()
     str = QFileDialog::getOpenFileName(this, "Select file", "C:/Programms/",
                                        "All Files (*.*);; TXT Files (*.txt);");
 
-    emit siganl_readFile(str);
+    emit signal_readFile(str);
 }
 
 void MainForm::slot_readFileBack(QStringList stringlist)
@@ -40,5 +46,7 @@ void MainForm::slot_readFileBack(QStringList stringlist)
     linesFile = stringlist;
 
     qDebug()<<"linesFile="<<linesFile;
+
+    emit signal_checkAndWriteStringList(linesFile);
 }
 

@@ -9,6 +9,7 @@
 #include <QTextStream>
 #include <QStringList>
 #include "readfile.h"
+#include "checkandwritestringlist.h"
 
 
 
@@ -32,7 +33,8 @@ private slots:
 //    void readFile();
 
 signals:
-    void siganl_readFile(QString str);
+    void signal_readFile(QString str);
+    void signal_checkAndWriteStringList(QStringList stringlist);
 
 private:
     Ui::MainForm *ui;
