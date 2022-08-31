@@ -2,7 +2,7 @@
 #include "ui_mainform.h"
 #include "iostream"
 
-#include <QFile>
+
 
 using namespace std;
 
@@ -10,9 +10,54 @@ MainForm::MainForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainForm)
 {
-    // создать таблицу с полем и красить ячейки
+    // ОЧИСТКА ПРЕДЫДЩИХ МАССИВОВ + ОБНУЛЕНИЕ ПЕРЕМННЫХ
 
     ui->setupUi(this);
+
+    ui->textEdit->setReadOnly(true);
+
+    model = new QStandardItemModel;
+    model->insertColumns(0,10);
+    model->setHeaderData(0,Qt::Horizontal,"A");
+    model->setHeaderData(1,Qt::Horizontal,"B");
+    model->setHeaderData(2,Qt::Horizontal,"C");
+    model->setHeaderData(3,Qt::Horizontal,"D");
+    model->setHeaderData(4,Qt::Horizontal,"I");
+    model->setHeaderData(5,Qt::Horizontal,"F");
+    model->setHeaderData(6,Qt::Horizontal,"G");
+    model->setHeaderData(7,Qt::Horizontal,"H");
+    model->setHeaderData(8,Qt::Horizontal,"I");
+    model->setHeaderData(9,Qt::Horizontal,"J");
+
+    ui->tableView->setModel(model);
+
+    ui->tableView->resizeColumnsToContents();
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(9,QHeaderView::Stretch);
+
+    for (int i = 0; i < 10; i++)
+    {
+        model->insertRows(model->rowCount(),1);
+        model->setData(model->index(model->rowCount()-1,0),"0",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,1),"1",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,2),"2",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,3),"3",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,4),"4",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,5),"5",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,6),"6",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,7),"7",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,8),"8",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,9),"9",Qt::BackgroundRole);
+    }
+
+    //model->setData(model->index(0,0), QBrush(Qt::green), Qt::BackgroundRole);
+
+//    ui->tableView_vsetovari->resizeColumnsToContents();
+//    ui->tableView_vsetovari->setEditTriggers(QAbstractItemView::NoEditTriggers);
+//    ui->tableView_vsetovari->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
+//    ui->tableView_vsetovari->horizontalHeader()->setSectionResizeMode(2,QHeaderView::Stretch);
+
+    //QTableWidgetItem.setBackgroundColor()
 
     ReadFile *read = new ReadFile(this);
     connect(this,&MainForm::signal_readFile,read,&ReadFile::slot_readFile);
@@ -31,6 +76,7 @@ MainForm::~MainForm()
 {
     delete ui;
 }
+
 
 void MainForm::on_pushButton_clicked()
 {
@@ -112,6 +158,19 @@ void MainForm::slot_checkingShipsBack(int finErr,int errCheck)
         if (finalError==0)
         {
             //cout << "It's okay. Ships placement is correct!" << endl;
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (shipsZone[i][j]=='*')
+                    {
+                        model->setData(model->index(i,j), QBrush(Qt::green), Qt::BackgroundRole);
+                    }
+                }
+            }
+
+
             ui->textEdit->setText("It's okay. Ships placement is correct!");
         }
         else

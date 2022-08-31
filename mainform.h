@@ -3,15 +3,19 @@
 
 #include <QWidget>
 #include <QFileDialog>
+#include <QFile>
 #include <QDebug>
 #include <QByteArray>
 #include <QString>
 #include <QTextStream>
 #include <QStringList>
+#include <QStandardItemModel>
+#include <QBrush>
+#include <QVariant>
+
 #include "readfile.h"
 #include "checkandwritestringlist.h"
 #include "checkingships.h"
-
 
 
 namespace Ui {
@@ -25,6 +29,8 @@ class MainForm : public QWidget
 public:
     explicit MainForm(QWidget *parent = nullptr);
     ~MainForm();
+
+    QStandardItemModel *model;
 
     int globalError=0;
     int finalError = 0;
@@ -47,5 +53,6 @@ signals:
 private:
     Ui::MainForm *ui;
 };
+
 
 #endif // MAINFORM_H

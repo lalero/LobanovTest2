@@ -8,6 +8,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    setWindowTitle("Sea battle");
+
+    setFixedSize(454,540);
+
     MainForm *window = new MainForm(this);
     setCentralWidget(window);
 }
