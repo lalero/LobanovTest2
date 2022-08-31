@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     checkandwritestringlist.cpp \
+    checkingships.cpp \
     main.cpp \
     mainform.cpp \
     mainwindow.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     checkandwritestringlist.h \
+    checkingships.h \
     mainform.h \
     mainwindow.h \
     readfile.h

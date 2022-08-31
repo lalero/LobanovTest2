@@ -9,6 +9,20 @@ CheckAndWriteStringList::CheckAndWriteStringList(QObject *parent)
 void CheckAndWriteStringList::slot_checkAndWriteStringList(QStringList stringlist)
 {
     linesFile = stringlist;
+
+    shipsZone.clear();
+    int o = 0;
+    while (o<10)
+    {
+        QString x="##########";
+        shipsZone.append(x);
+        o++;
+        //qDebug() << x;
+        //qDebug() << "1";
+    }
+
+    qDebug()<<"shipsZone="<<shipsZone;
+
     int linesSize = linesFile.size();
     int linesSizeEnd = 0;
     int countLine = 0;
@@ -328,12 +342,15 @@ void CheckAndWriteStringList::slot_checkAndWriteStringList(QStringList stringlis
         }
         //qDebug()<<"countLine="<<countLine;
 
+
+        //emit
     }
 
+//    int globalError=0;
 //    if (messageError2==1)
 //    {
 //        //Ошибка! Обнаружены символы, соприкасающиеся с полем. Уберите их для корректной работы программы. Поле должно быть размером 10х10;
-//        cout << "Error! Characters in contact with the Ships placement are detected. Remove them for the correct operation of the program. Ships placement must be 10x10" << endl;
+//        //cout << "Error! Characters in contact with the Ships placement are detected. Remove them for the correct operation of the program. Ships placement must be 10x10" << endl;
 //        globalError=1;
 //    }
 //    else
@@ -341,8 +358,10 @@ void CheckAndWriteStringList::slot_checkAndWriteStringList(QStringList stringlis
 //        {
 //            //cout << "Ошибка! Не найдено поле требуемого размера 10х10"<< endl;
 
-//            cout << "Error! No valid Ships placement with a size 10x10 with symbols '*' and '0' was found! Please specify an isolated 10x10 Ships placement" << endl;
+//            //cout << "Error! No valid Ships placement with a size 10x10 with symbols '*' and '0' was found! Please specify an isolated 10x10 Ships placement" << endl;
 //            globalError=1;
 
 //        }
+
+    emit signal_checkAndWriteStringListBack(shipsZone,messageError1,messageError2);
 }

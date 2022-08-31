@@ -2,6 +2,11 @@
 #define CHECKANDWRITESTRINGLIST_H
 
 #include <QObject>
+#include <QDebug>
+#include <QString>
+#include <QTextStream>
+#include <QStringList>
+
 
 class CheckAndWriteStringList : public QObject
 {
@@ -16,6 +21,7 @@ public slots:
     void slot_checkAndWriteStringList(QStringList stringlist);
 
 signals:
+    void signal_checkAndWriteStringListBack(QStringList stringlist, int mesEr1, int mesEr2);
 
 };
 
