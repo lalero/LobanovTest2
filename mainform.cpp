@@ -81,14 +81,47 @@ MainForm::~MainForm()
 
 void MainForm::on_pushButton_clicked()
 {
+    model = new QStandardItemModel;
+    model->insertColumns(0,10);
+    model->setHeaderData(0,Qt::Horizontal,"A");
+    model->setHeaderData(1,Qt::Horizontal,"B");
+    model->setHeaderData(2,Qt::Horizontal,"C");
+    model->setHeaderData(3,Qt::Horizontal,"D");
+    model->setHeaderData(4,Qt::Horizontal,"I");
+    model->setHeaderData(5,Qt::Horizontal,"F");
+    model->setHeaderData(6,Qt::Horizontal,"G");
+    model->setHeaderData(7,Qt::Horizontal,"H");
+    model->setHeaderData(8,Qt::Horizontal,"I");
+    model->setHeaderData(9,Qt::Horizontal,"J");
+
+    ui->tableView->setModel(model);
+
+    ui->tableView->resizeColumnsToContents();
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(9,QHeaderView::Stretch);
+
+    for (int i = 0; i < 10; i++)
+    {
+        model->insertRows(model->rowCount(),1);
+        model->setData(model->index(model->rowCount()-1,0),"0",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,1),"1",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,2),"2",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,3),"3",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,4),"4",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,5),"5",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,6),"6",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,7),"7",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,8),"8",Qt::BackgroundRole);
+        model->setData(model->index(model->rowCount()-1,9),"9",Qt::BackgroundRole);
+    }
+
     linesFile.clear();
     shipsZone.clear();
+    redShips.clear();
     //model->clear();
     globalError=0;
     finalError = 0;
     errorCheck = 0;
-
-
 
     QString str;
     str = QFileDialog::getOpenFileName(this, "Select file", "C:/Programms/",
@@ -187,7 +220,16 @@ void MainForm::slot_checkingShipsBack(int finErr,int errCheck, QStringList strin
         else
             if (finalError == 1)
             {
-
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (shipsZone[i][j]=='*')
+                        {
+                            model->setData(model->index(i,j), QBrush(Qt::green), Qt::BackgroundRole);
+                        }
+                    }
+                }
 
                 //cout << "ERROR! Wrong number of ships!" << endl;
                 ui->textEdit->setText("ERROR! Wrong number of ships!");

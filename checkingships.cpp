@@ -19,6 +19,7 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
     QStringList shipsZone;
     QStringList greeenShips;
     QStringList redShips;
+    QStringList redShipsUpd;
     shipsZone=stringlist;
 
     qDebug()<<"shipsZone="<<shipsZone;
@@ -49,8 +50,8 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                     {
                         QString a1 = QString::number(lineCheck);
                         QString a2 = QString::number(columnCheck);
-//                        QString a3 = QString::number(lineCheck+1);
-//                        QString a4 = QString::number(columnCheck+1);
+                        //                        QString a3 = QString::number(lineCheck+1);
+                        //                        QString a4 = QString::number(columnCheck+1);
                         QString allA = a1+a2;
                         redShips.append(allA);
 
@@ -277,6 +278,129 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
         lineCheck++;
     }
 
+   ///////////////////////////////
+
+//    lineCheck = 0;
+
+//    while (lineCheck < 10)
+//    {
+//        columnCheck = 0;
+//        while (columnCheck < 10)
+//        {
+//            if (shipsZone[lineCheck][columnCheck]=='*')
+//            {
+//                QString str1 = QString::number(lineCheck);
+//                QString str2 = QString::number(columnCheck);
+
+//                int lineInt = 0;
+//                int columnInt = 0;
+//                for (int i = 0; i < redShips.size(); i++)
+//                {
+//                    QString line = redShips[i][0];
+//                    QString column = redShips[i][1];
+
+//                    lineInt = line.toInt();
+//                    columnInt = column.toInt();
+
+//                    if ((lineCheck==lineInt)&&(columnCheck-1==columnInt))
+//                    {
+//                        qDebug()<<"yhoooooooooooooooooo";
+
+//                        QString str1 = QString::number(lineCheck);
+//                        QString str2 = QString::number(columnCheck);
+//                        QString str12;
+//                        str12 = str1 + str2;
+
+//                        redShips.append(str12);
+//                    }
+
+//                    if ((lineCheck==lineInt)&&(columnCheck-1==columnInt))
+//                    {
+
+//                        QString str1 = QString::number(lineCheck);
+//                        QString str2 = QString::number(columnCheck);
+//                        QString str12;
+//                        str12 = str1 + str2;
+
+//                        redShips.append(str12);
+//                    }
+
+//                    if ((lineCheck==lineInt)&&(columnCheck+1==columnInt))
+//                    {
+
+
+//                        QString str1 = QString::number(lineCheck);
+//                        QString str2 = QString::number(columnCheck);
+//                        QString str12;
+//                        str12 = str1 + str2;
+
+//                        redShips.append(str12);
+//                    }
+
+//                    if ((lineCheck+1==lineInt)&&(columnCheck==columnInt))
+//                    {
+
+//                        QString str1 = QString::number(lineCheck);
+//                        QString str2 = QString::number(columnCheck);
+//                        QString str12;
+//                        str12 = str1 + str2;
+
+//                        redShips.append(str12);
+//                    }
+
+//                }
+
+
+//            }
+
+
+//            columnCheck++;
+//        }
+
+//        lineCheck++;
+//    }
+
+//    lineCheck = 0;
+//    columnCheck = 0;
+//    while (lineCheck < 10)
+//    {
+//        columnCheck = 0;
+//        while (columnCheck < 10)
+//        {
+//            for (int i = 0; i < redShips.size(); i++)
+//            {
+//                QString line = redShips[i][0];
+//                QString column = redShips[i][1];
+
+//                int lineInt = 0;
+//                lineInt = line.toInt();
+//                int columnInt = 0;
+//                columnInt = column.toInt();
+
+//                if ((shipsZone[lineCheck][columnCheck]=='*')&&((lineCheck==lineInt)||(columnCheck==columnInt)))
+//                {
+
+
+//                                    QString a1 = QString::number(lineCheck);
+//                                    QString a2 = QString::number(columnCheck);
+//                                    QString allA = a1+a2;
+//                                    redShipsUpd.append(allA);
+
+
+//                }
+//            }
+
+
+//            columnCheck++;
+//        }
+//        lineCheck++;
+//    }
+
+
+    qDebug()<<"redShipsUpd="<<redShipsUpd;
+
+
+
     qDebug()<<"redShips="<<redShips;
 
     ////////////////////////*////////////////////////////////////////////////////////
@@ -398,191 +522,6 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
             column++;
         }
 
-        //qDebug()<<"fakeLineShips="<<fakeLineShips;
-        //qDebug()<<"fakeColumnShips="<<fakeColumnShips;
-
-        //    qDebug()<<"fakeLineShips.size()="<<fakeLineShips.size();
-        //    qDebug()<<"fakeColumnShips.size()="<<fakeColumnShips.size();
-
-
-        /*
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    //ДЛЯ 2 ЧАСТИ ПРОГРАММЫ
-
-
-    int countI=0;
-    int countJ=0;
-
-    int kUp=0;
-    int kDown=0;
-
-    int qUp=0;
-    int qDown=0;
-
-    while (kUp<fakeLineShips.size())
-    {
-        //kDown=0;
-
-        //qDebug()<<"fakeLineShips[countI].size()-2="<<fakeLineShips[kDown].size()-2;
-
-//        for (int countI = 0; countI < fakeLineShips[countI].size()-2; countI++)
-//        {
-
-        int kDown=0;
-        while (kDown < fakeLineShips[kUp].size()) //мб без -1
-        {
-            QString point1LineShips = fakeLineShips[kUp][kDown];
-            QString point2LineShips = fakeLineShips[kUp][kDown+1];
-
-            //qDebug()<<"point1LineShips="<<point1LineShips;
-            //qDebug()<<"point2LineShips="<<point2LineShips;
-
-
-
-            while (qUp<fakeColumnShips.size())//
-            {
-                //int q=0;
-                //qDebug()<<"1";
-                while (qDown<fakeColumnShips[qUp].size()) //мб без -1
-                {
-                    //qDebug()<<"qDown="<<qDown;
-                    QString point1ColumnShips = fakeColumnShips[qUp][qDown];
-                    QString point2ColumnShips = fakeColumnShips[qUp][qDown+1];
-
-                    //qDebug()<<"point1ColumnShips="<<point1ColumnShips;
-                    //qDebug()<<"point2ColumnShips="<<point2ColumnShips;
-                    //qDebug()<<"fakeColumnShips[qUp].size()="<<fakeColumnShips[qUp].size();
-
-                    //qDebug()<<"kUp="<<kUp;
-
-
-                    //&&(fakeLineShips[qUp].size()>2)
-                    if ((point1LineShips==point1ColumnShips)&&(point2LineShips==point2ColumnShips)&&(fakeLineShips[kUp].size()>2)&&(fakeColumnShips[qUp].size()>2))
-                    {
-                        //qDebug()<<"fakeColumnShips["<<qUp<<"].size()="<<fakeLineShips[qUp].size();
-                        //qDebug()<<"point1LineShips="<<point1LineShips;
-                        //qDebug()<<"point2LineShips="<<point2LineShips;
-
-
-
-                        QString povtor = point1ColumnShips+point2ColumnShips;
-
-                        //int countSpace = fakeColumnShips[qUp].size();
-
-                        QString noSpace;
-
-                        //for (int i = 0; i <  fakeColumnShips[qUp].size(); i++)
-                        //qDebug()<<"fakeColumnShips[qUp]="<<fakeColumnShips[qUp];
-
-                        int countNoSpace=0;
-                        while (countNoSpace < fakeColumnShips[qUp].size())
-                        {
-//                            QString point1ColumnShips = fakeColumnShips[qUp][qDown];
-//                            QString point2ColumnShips = fakeColumnShips[qUp][qDown+1];
-
-                            //qDebug()<<"point1ColumnShips="<<point1ColumnShips;
-                            //qDebug()<<"point2ColumnShips="<<point2ColumnShips;
-
-//                            qDebug()<<"fakeColumnShips[qUp][countNoSpace]="<<fakeColumnShips[qUp][countNoSpace];
-//                            qDebug()<<"fakeColumnShips[qUp][countNoSpace+1]="<<fakeColumnShips[qUp][countNoSpace+1];
-
-                            if ((fakeColumnShips[qUp][countNoSpace]!=point1ColumnShips)||(fakeColumnShips[qUp][countNoSpace+1]!=point2ColumnShips))
-                            {
-                                noSpace = noSpace + fakeColumnShips[qUp][countNoSpace]+ fakeColumnShips[qUp][countNoSpace+1];
-                                //qDebug()<<"22222222222222222222";
-                            }
-
-                            countNoSpace=countNoSpace+2;
-                        }
-
-//                        QString strSpace;
-//                        for (int i = 0; i <  fakeColumnShips[qUp].size(); i++)
-//                        {
-//                            strSpace = strSpace+" ";
-//                        }
-
-                        //fakeColumnShips[qUp]=strSpace;
-
-                        //тут работаю
-
-                        //qDebug()<<"noSpace="<<noSpace;
-
-                        //QString strX=point1ColumnShips+point2ColumnShips;
-
-                        //все одинаковые плюсовать
-
-                        QString strOld;
-
-                        for (int i = 0; i < fakeLineShips[kUp].size(); i++)
-                        {
-
-                            strOld = strOld + fakeLineShips[kUp][i];
-                        }
-
-                        QString final = strOld+noSpace;
-
-                        //qDebug()<<"final="<<final;
-
-                        //fakeLineShips[kUp]=final;
-
-                        allShips.append(final);
-
-                        //qDebug()<<"+++";
-                    }
-
-                    //q=q+2;
-                    qDown=qDown+2;
-                }
-                //qDebug()<<"----";
-                qDown=0;
-
-                qUp++;
-            }
-
-
-//            if (qUp != fakeColumnShips.size()-1)
-//            {
-                qUp=0;
-//            }
-
-            qDown=0;
-            kDown=kDown+2;
-        }
-
-
-
-        //kDown++;
-
-//        }
-
-
-//        if (qUp != fakeColumnShips.size())
-//        {
-//            qUp=0;
-//        }
-
-        kUp++;
-
-         //fakeLineShips.removeAll();
-    }
-
-    //qDebug()<<"strOld="<<strOld;
-
-    qDebug()<<"allShips="<<allShips;
-//    qDebug()<<"fakeColumnShips="<<fakeColumnShips;
-
-///////////////////////////////////////////////////////////////////////
-
-    */
-
-
-
-
-        //int pointShip=0;
-
-        //    int qUp=0;
-        //    int qDown=0;
 
         int lineShip=0;
         int columnShip=0;
@@ -797,7 +736,128 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
 
 
 
-        ////////////////////////////////////////////
+        ////////////////////////////////////////////***********************new
+
+        qDebug()<<"fakeColumnShips="<<fakeColumnShips;
+
+        for (int i = 0; i < fakeColumnShips.size(); i++)
+        {
+            if (fakeColumnShips[i].size()>8)
+            {
+                int j=0;
+                while (j<fakeColumnShips[i].size())
+                {
+                    QString p1 = fakeColumnShips[i][j];
+                    QString p2 = fakeColumnShips[i][j+1];
+                    QString p12 = p1+p2;
+
+                    redShips.append(p12);
+
+                    j=j+2;
+                }
+
+            }
+        }
+
+        for (int i = 0; i < fakeColumnShips.size(); i++)
+        {
+                int j=0;
+                while (j<fakeColumnShips[i].size())
+                {
+                    QString p1 = fakeColumnShips[i][j];
+                    QString p2 = fakeColumnShips[i][j+1];
+                    QString p12 = p1+p2;
+
+                    int k=0;
+                    while (k<redShips.size())
+                    {
+                        if (p12==redShips[k])
+                        {
+
+                            int q=0;
+                            while (q<fakeColumnShips[i].size())
+                            {
+                                QString p3 = fakeColumnShips[i][q];
+                                QString p4 = fakeColumnShips[i][q+1];
+                                QString p34 = p3+p4;
+
+                                redShips.append(p34);
+
+                                q=q+2;
+                            }
+                            k=redShips.size();
+                        }
+
+                        k++;
+                    }
+
+                    j=j+2;
+                }
+
+        }
+
+
+        for (int i = 0; i < fakeLineShips.size(); i++)
+        {
+                int j=0;
+                while (j<fakeLineShips[i].size())
+                {
+                    QString p1 = fakeLineShips[i][j];
+                    QString p2 = fakeLineShips[i][j+1];
+                    QString p12 = p1+p2;
+
+                    int k=0;
+                    while (k<redShips.size())
+                    {
+                        if (p12==redShips[k])
+                        {
+
+                            int q=0;
+                            while (q<fakeLineShips[i].size())
+                            {
+                                QString p3 = fakeLineShips[i][q];
+                                QString p4 = fakeLineShips[i][q+1];
+                                QString p34 = p3+p4;
+
+                                redShips.append(p34);
+
+                                q=q+2;
+                            }
+                            k=redShips.size();
+                        }
+
+                        k++;
+                    }
+
+
+
+                    j=j+2;
+                }
+
+        }
+
+        //qDebug()<<"redShips="<<redShips;
+
+        for (int i = 0; i < fakeLineShips.size(); i++)
+        {
+            if (fakeLineShips[i].size()>8)
+            {
+                int j=0;
+                while (j<fakeLineShips[i].size())
+                {
+                    QString p1 = fakeLineShips[i][j];
+                    QString p2 = fakeLineShips[i][j+1];
+                    QString p12 = p1+p2;
+
+                    redShips.append(p12);
+
+                    j=j+2;
+                }
+
+            }
+        }
+
+         //qDebug()<<"redShips="<<redShips;
 
         while (columnShip<fakeColumnShips.size())
         {
@@ -871,7 +931,7 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
             columnShip++;
         }
 
-        //qDebug()<<"sizeShips="<<sizeShips;
+        qDebug()<<"sizeShips="<<sizeShips;
 
         //    int countRealShip1=0;
         //    int countNormalShip1=4;
