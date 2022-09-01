@@ -44,7 +44,7 @@ private slots:
     void slot_readFileBack(QStringList stringlist);
     void slot_checkAndWriteStringListBack(QStringList stringlist, int mesEr1, int mesEr2);
     void slot_checkingShipsBack(int finErr,int errCheck, QStringList stringlist);
-//    void readFile();
+    //    void readFile();
 
 signals:
     void signal_readFile(QString str);

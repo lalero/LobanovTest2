@@ -2,17 +2,12 @@
 #include "ui_mainform.h"
 #include "iostream"
 
-
-
 using namespace std;
 
 MainForm::MainForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainForm)
 {
-
-    // ОЧИСТКА ПРЕДЫДЩИХ МАССИВОВ + ОБНУЛЕНИЕ ПЕРЕМННЫХ
-
     ui->setupUi(this);
 
     ui->textEdit->setReadOnly(true);
@@ -51,15 +46,6 @@ MainForm::MainForm(QWidget *parent) :
         model->setData(model->index(model->rowCount()-1,9),"9",Qt::BackgroundRole);
     }
 
-    //model->setData(model->index(0,0), QBrush(Qt::green), Qt::BackgroundRole);
-
-//    ui->tableView_vsetovari->resizeColumnsToContents();
-//    ui->tableView_vsetovari->setEditTriggers(QAbstractItemView::NoEditTriggers);
-//    ui->tableView_vsetovari->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
-//    ui->tableView_vsetovari->horizontalHeader()->setSectionResizeMode(2,QHeaderView::Stretch);
-
-    //QTableWidgetItem.setBackgroundColor()
-
     ReadFile *read = new ReadFile(this);
     connect(this,&MainForm::signal_readFile,read,&ReadFile::slot_readFile);
     connect(read,&ReadFile::signal_readFileBack,this,&MainForm::slot_readFileBack);
@@ -77,7 +63,6 @@ MainForm::~MainForm()
 {
     delete ui;
 }
-
 
 void MainForm::on_pushButton_clicked()
 {
@@ -118,15 +103,15 @@ void MainForm::on_pushButton_clicked()
     linesFile.clear();
     shipsZone.clear();
     redShips.clear();
-    //model->clear();
+
     globalError=0;
     finalError = 0;
     errorCheck = 0;
 
     QString str;
-    str = QFileDialog::getOpenFileName(this, "Select file", "C:/Programms/",
-                                       "All Files (*.*);; TXT Files (*.txt);");
-
+    str = QFileDialog::getOpenFileName();
+//    str = QFileDialog::getOpenFileName(this, "Select file", "C:/Programms/",
+//                                       "All Files (*.*);; TXT Files (*.txt);");
     ui->label->setText(str);
 
     emit signal_readFile(str);
@@ -135,18 +120,6 @@ void MainForm::on_pushButton_clicked()
 void MainForm::slot_readFileBack(QStringList stringlist)
 {
     linesFile = stringlist;
-
-    //qDebug()<<"linesFile="<<linesFile;
-
-//    int o = 0;
-//    while (o<10)
-//    {
-//        QString x="##########";
-//        shipsZone.append(x);
-//        o++;
-//        //qDebug() << x;
-//        //qDebug() << "1";
-//    }
 
     emit signal_checkAndWriteStringList(linesFile);
 }
@@ -158,22 +131,15 @@ void MainForm::slot_checkAndWriteStringListBack(QStringList stringlist, int mesE
     int messageError1 = mesEr1;
     int messageError2 = mesEr2;
 
-
-    //qDebug()<<"shipsZone="<<shipsZone;
-
     globalError=0;
     if (messageError2==1)
     {
-        //Ошибка! Обнаружены символы, соприкасающиеся с полем. Уберите их для корректной работы программы. Поле должно быть размером 10х10;
-        //cout << "Error! Characters in contact with the Ships placement are detected. Remove them for the correct operation of the program. Ships placement must be 10x10" << endl;
         ui->textEdit->setText("Error! Characters in contact with the Ships placement are detected. Remove them for the correct operation of the program. Ships placement must be 10x10");
         globalError=1;
     }
     else
         if (messageError1==1)
         {
-            //cout << "Ошибка! Не найдено поле требуемого размера 10х10"<< endl;
-            //cout << "Error! No valid Ships placement with a size 10x10 with symbols '*' and '0' was found! Please specify an isolated 10x10 Ships placement" << endl;
             ui->textEdit->setText("Error! No valid Ships placement with a size 10x10 with symbols '*' and '0' was found! Please specify an isolated 10x10 Ships placement");
             globalError=1;
 
@@ -193,16 +159,11 @@ void MainForm::slot_checkingShipsBack(int finErr,int errCheck, QStringList strin
     errorCheck=errCheck;
     redShips = stringlist;
 
-    qDebug()<<"finalError="<<finalError;
-    qDebug()<<"errorCheck="<<errorCheck;
-
     if (errorCheck==0)
     {
 
         if (finalError==0)
         {
-            //cout << "It's okay. Ships placement is correct!" << endl;
-
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -213,7 +174,6 @@ void MainForm::slot_checkingShipsBack(int finErr,int errCheck, QStringList strin
                     }
                 }
             }
-
 
             ui->textEdit->setText("It's okay. Ships placement is correct!");
         }
@@ -231,7 +191,6 @@ void MainForm::slot_checkingShipsBack(int finErr,int errCheck, QStringList strin
                     }
                 }
 
-                //cout << "ERROR! Wrong number of ships!" << endl;
                 ui->textEdit->setText("ERROR! Wrong number of ships!");
             }
 
@@ -261,20 +220,11 @@ void MainForm::slot_checkingShipsBack(int finErr,int errCheck, QStringList strin
             int columnInt = 0;
             columnInt = column.toInt();
 
-            //int lineInt = redShips[sizeRedShips][0].toInt();
-
-//                if (shipsZone[i][j]=='*')
-//                {
-                    model->setData(model->index(lineInt,columnInt), QBrush(Qt::red), Qt::BackgroundRole);
-//                }
+            model->setData(model->index(lineInt,columnInt), QBrush(Qt::red), Qt::BackgroundRole);
 
             sizeRedShips++;
         }
 
-        //cout << "ERROR! Wrong position of ships! The ships are touching!" << endl;
         ui->textEdit->setText("ERROR! Wrong position of ships! The ships are touching!");
     }
-
-
 }
-
