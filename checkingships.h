@@ -20,7 +20,7 @@ public slots:
     void slot_checkingShips(QStringList stringlist);
 
 signals:
-    void signal_checkingShipsBack(int finErr,int errCheck);
+    void signal_checkingShipsBack(int finErr,int errCheck, QStringList stringlist);
 
 };
 

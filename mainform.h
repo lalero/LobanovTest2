@@ -37,12 +37,13 @@ public:
     int errorCheck = 0;
     QStringList linesFile;
     QStringList shipsZone;
+    QStringList redShips;
 
 private slots:
     void on_pushButton_clicked();
     void slot_readFileBack(QStringList stringlist);
     void slot_checkAndWriteStringListBack(QStringList stringlist, int mesEr1, int mesEr2);
-    void slot_checkingShipsBack(int finErr,int errCheck);
+    void slot_checkingShipsBack(int finErr,int errCheck, QStringList stringlist);
 //    void readFile();
 
 signals:

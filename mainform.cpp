@@ -10,6 +10,7 @@ MainForm::MainForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainForm)
 {
+
     // ОЧИСТКА ПРЕДЫДЩИХ МАССИВОВ + ОБНУЛЕНИЕ ПЕРЕМННЫХ
 
     ui->setupUi(this);
@@ -81,10 +82,19 @@ MainForm::~MainForm()
 void MainForm::on_pushButton_clicked()
 {
     linesFile.clear();
+    shipsZone.clear();
+    //model->clear();
+    globalError=0;
+    finalError = 0;
+    errorCheck = 0;
+
+
 
     QString str;
     str = QFileDialog::getOpenFileName(this, "Select file", "C:/Programms/",
                                        "All Files (*.*);; TXT Files (*.txt);");
+
+    ui->label->setText(str);
 
     emit signal_readFile(str);
 }
@@ -144,10 +154,11 @@ void MainForm::slot_checkAndWriteStringListBack(QStringList stringlist, int mesE
     //учесть globEr
 }
 
-void MainForm::slot_checkingShipsBack(int finErr,int errCheck)
+void MainForm::slot_checkingShipsBack(int finErr,int errCheck, QStringList stringlist)
 {
     finalError=finErr;
     errorCheck=errCheck;
+    redShips = stringlist;
 
     qDebug()<<"finalError="<<finalError;
     qDebug()<<"errorCheck="<<errorCheck;
@@ -176,12 +187,48 @@ void MainForm::slot_checkingShipsBack(int finErr,int errCheck)
         else
             if (finalError == 1)
             {
+
+
                 //cout << "ERROR! Wrong number of ships!" << endl;
                 ui->textEdit->setText("ERROR! Wrong number of ships!");
             }
+
     }
     else
     {
+
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                if (shipsZone[i][j]=='*')
+                {
+                    model->setData(model->index(i,j), QBrush(Qt::green), Qt::BackgroundRole);
+                }
+            }
+        }
+
+        int sizeRedShips = 0;
+        while (sizeRedShips<redShips.size())
+        {
+            QString line = redShips[sizeRedShips][0];
+            QString column = redShips[sizeRedShips][1];
+
+            int lineInt = 0;
+            lineInt = line.toInt();
+            int columnInt = 0;
+            columnInt = column.toInt();
+
+            //int lineInt = redShips[sizeRedShips][0].toInt();
+
+//                if (shipsZone[i][j]=='*')
+//                {
+                    model->setData(model->index(lineInt,columnInt), QBrush(Qt::red), Qt::BackgroundRole);
+//                }
+
+            sizeRedShips++;
+        }
+
         //cout << "ERROR! Wrong position of ships! The ships are touching!" << endl;
         ui->textEdit->setText("ERROR! Wrong position of ships! The ships are touching!");
     }

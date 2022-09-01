@@ -17,6 +17,8 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
     QStringList fakeColumnShips;
     QStringList sizeShips;
     QStringList shipsZone;
+    QStringList greeenShips;
+    QStringList redShips;
     shipsZone=stringlist;
 
     qDebug()<<"shipsZone="<<shipsZone;
@@ -45,12 +47,24 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                 {
                     if (shipsZone[lineCheck+1][columnCheck+1]=='*')
                     {
+                        QString a1 = QString::number(lineCheck);
+                        QString a2 = QString::number(columnCheck);
+//                        QString a3 = QString::number(lineCheck+1);
+//                        QString a4 = QString::number(columnCheck+1);
+                        QString allA = a1+a2;
+                        redShips.append(allA);
+
                         //qDebug()<<"11111";
                         errorCheck++;
                     }
 
                     if ((shipsZone[lineCheck][columnCheck+1]=='*')&&(shipsZone[lineCheck+1][columnCheck]=='*'))
                     {
+                        QString a1 = QString::number(lineCheck);
+                        QString a2 = QString::number(columnCheck);
+                        QString allA = a1+a2;
+                        redShips.append(allA);
+
                         //qDebug()<<"22222";
                         errorCheck++;
                     }
@@ -60,12 +74,20 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                     {
                         if (shipsZone[lineCheck+1][columnCheck-1]=='*')
                         {
+                            QString a1 = QString::number(lineCheck);
+                            QString a2 = QString::number(columnCheck);
+                            QString allA = a1+a2;
+                            redShips.append(allA);
                             //qDebug()<<"111111";
                             errorCheck++;
                         }
 
                         if ((shipsZone[lineCheck][columnCheck-1]=='*')&&(shipsZone[lineCheck+1][columnCheck]=='*'))
                         {
+                            QString a1 = QString::number(lineCheck);
+                            QString a2 = QString::number(columnCheck);
+                            QString allA = a1+a2;
+                            redShips.append(allA);
                             //qDebug()<<"222222";
                             errorCheck++;
                         }
@@ -75,12 +97,20 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                         {
                             if (shipsZone[lineCheck-1][columnCheck-1]=='*')
                             {
+                                QString a1 = QString::number(lineCheck);
+                                QString a2 = QString::number(columnCheck);
+                                QString allA = a1+a2;
+                                redShips.append(allA);
                                 //qDebug()<<"3";
                                 errorCheck++;
                             }
 
                             if ((shipsZone[lineCheck-1][columnCheck]=='*')&&(shipsZone[lineCheck][columnCheck-1]=='*'))
                             {
+                                QString a1 = QString::number(lineCheck);
+                                QString a2 = QString::number(columnCheck);
+                                QString allA = a1+a2;
+                                redShips.append(allA);
                                 //qDebug()<<"4";
                                 errorCheck++;
                             }
@@ -90,12 +120,20 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                             {
                                 if (shipsZone[lineCheck-1][columnCheck+1]=='*')
                                 {
+                                    QString a1 = QString::number(lineCheck);
+                                    QString a2 = QString::number(columnCheck);
+                                    QString allA = a1+a2;
+                                    redShips.append(allA);
                                     //qDebug()<<"5";
                                     errorCheck++;
                                 }
 
                                 if ((shipsZone[lineCheck-1][columnCheck]=='*')&&(shipsZone[lineCheck][columnCheck+1]=='*'))
                                 {
+                                    QString a1 = QString::number(lineCheck);
+                                    QString a2 = QString::number(columnCheck);
+                                    QString allA = a1+a2;
+                                    redShips.append(allA);
                                     //qDebug()<<"6";
                                     errorCheck++;
                                 }
@@ -105,6 +143,10 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                                 {
                                     if ((shipsZone[lineCheck+1][columnCheck-1]=='*')||(shipsZone[lineCheck+1][columnCheck+1]=='*'))
                                     {
+                                        QString a1 = QString::number(lineCheck);
+                                        QString a2 = QString::number(columnCheck);
+                                        QString allA = a1+a2;
+                                        redShips.append(allA);
                                         //qDebug()<<"1";
                                         errorCheck++;
                                     }
@@ -112,6 +154,10 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                                     if (((shipsZone[lineCheck][columnCheck+1]=='*')&&(shipsZone[lineCheck+1][columnCheck]=='*'))
                                             ||((shipsZone[lineCheck+1][columnCheck]=='*')&&(shipsZone[lineCheck][columnCheck-1]=='*')))
                                     {
+                                        QString a1 = QString::number(lineCheck);
+                                        QString a2 = QString::number(columnCheck);
+                                        QString allA = a1+a2;
+                                        redShips.append(allA);
                                         //qDebug()<<"2";
                                         errorCheck++;
                                     }
@@ -121,6 +167,10 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                                     {
                                         if ((shipsZone[lineCheck-1][columnCheck-1]=='*')||(shipsZone[lineCheck-1][columnCheck+1]=='*'))
                                         {
+                                            QString a1 = QString::number(lineCheck);
+                                            QString a2 = QString::number(columnCheck);
+                                            QString allA = a1+a2;
+                                            redShips.append(allA);
                                             //qDebug()<<"11";
                                             errorCheck++;
                                         }
@@ -128,6 +178,10 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                                         if (((shipsZone[lineCheck][columnCheck-1]=='*')&&(shipsZone[lineCheck-1][columnCheck]=='*'))
                                                 ||((shipsZone[lineCheck-1][columnCheck]=='*')&&(shipsZone[lineCheck][columnCheck+1]=='*')))
                                         {
+                                            QString a1 = QString::number(lineCheck);
+                                            QString a2 = QString::number(columnCheck);
+                                            QString allA = a1+a2;
+                                            redShips.append(allA);
                                             //qDebug()<<"22";
                                             errorCheck++;
                                         }
@@ -140,6 +194,10 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                                             //                    qDebug()<<"columnCheck="<<columnCheck;
                                             if ((shipsZone[lineCheck-1][columnCheck+1]=='*')||(shipsZone[lineCheck+1][columnCheck+1]=='*'))
                                             {
+                                                QString a1 = QString::number(lineCheck);
+                                                QString a2 = QString::number(columnCheck);
+                                                QString allA = a1+a2;
+                                                redShips.append(allA);
                                                 //qDebug()<<"111";
                                                 errorCheck++;
                                             }
@@ -147,6 +205,10 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                                             if (((shipsZone[lineCheck-1][columnCheck]=='*')&&(shipsZone[lineCheck][columnCheck+1]=='*'))
                                                     ||((shipsZone[lineCheck][columnCheck+1]=='*')&&(shipsZone[lineCheck+1][columnCheck]=='*')))
                                             {
+                                                QString a1 = QString::number(lineCheck);
+                                                QString a2 = QString::number(columnCheck);
+                                                QString allA = a1+a2;
+                                                redShips.append(allA);
                                                 //qDebug()<<"222";
                                                 errorCheck++;
                                             }
@@ -156,6 +218,10 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                                             {
                                                 if ((shipsZone[lineCheck-1][columnCheck-1]=='*')||(shipsZone[lineCheck+1][columnCheck-1]=='*'))
                                                 {
+                                                    QString a1 = QString::number(lineCheck);
+                                                    QString a2 = QString::number(columnCheck);
+                                                    QString allA = a1+a2;
+                                                    redShips.append(allA);
                                                     //qDebug()<<"1111";
                                                     errorCheck++;
                                                 }
@@ -163,6 +229,10 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                                                 if (((shipsZone[lineCheck][columnCheck-1]=='*')&&(shipsZone[lineCheck-1][columnCheck]=='*'))
                                                         ||((shipsZone[lineCheck+1][columnCheck]=='*')&&(shipsZone[lineCheck][columnCheck-1]=='*')))
                                                 {
+                                                    QString a1 = QString::number(lineCheck);
+                                                    QString a2 = QString::number(columnCheck);
+                                                    QString allA = a1+a2;
+                                                    redShips.append(allA);
                                                     //qDebug()<<"2222";
                                                     errorCheck++;
                                                 }
@@ -173,6 +243,10 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                                                 if ((shipsZone[lineCheck-1][columnCheck-1]=='*')||(shipsZone[lineCheck-1][columnCheck+1]=='*')
                                                         ||(shipsZone[lineCheck+1][columnCheck-1]=='*')||(shipsZone[lineCheck+1][columnCheck+1]=='*'))
                                                 {
+                                                    QString a1 = QString::number(lineCheck);
+                                                    QString a2 = QString::number(columnCheck);
+                                                    QString allA = a1+a2;
+                                                    redShips.append(allA);
                                                     //qDebug()<<"111111111111";
                                                     errorCheck++;
                                                 }
@@ -182,6 +256,10 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                                                         ||((shipsZone[lineCheck][columnCheck+1]=='*')&&(shipsZone[lineCheck+1][columnCheck]=='*'))
                                                         ||((shipsZone[lineCheck+1][columnCheck]=='*')&&(shipsZone[lineCheck][columnCheck-1]=='*')))
                                                 {
+                                                    QString a1 = QString::number(lineCheck);
+                                                    QString a2 = QString::number(columnCheck);
+                                                    QString allA = a1+a2;
+                                                    redShips.append(allA);
                                                     //qDebug()<<"2222222222";
                                                     errorCheck++;
                                                 }
@@ -199,9 +277,12 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
         lineCheck++;
     }
 
+    qDebug()<<"redShips="<<redShips;
 
-    if (errorCheck==0)
-    {
+    ////////////////////////*////////////////////////////////////////////////////////
+
+//    if (errorCheck==0)   //тут мб errorCheck>0
+//    {
 
 
         // Проверка на близлежащие клетки
@@ -590,6 +671,9 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                 QString point1LineShips = fakeLineShips[lineShip][pointShip];
                 QString point2LineShips = fakeLineShips[lineShip][pointShip+1];
 
+//                qDebug()<<"point1LineShips="<<point1LineShips;
+//                qDebug()<<"point2LineShips="<<point2LineShips;
+
                 //qDebug()<<"point1LineShips="<<point1LineShips;
                 //qDebug()<<"point2LineShips="<<point2LineShips;
 
@@ -650,6 +734,8 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                             {
                                 if((countSizeColumnShips==2)&&((point1LineShips==fakeColumnShips[i][j])||(point2LineShips==fakeColumnShips[i][j+1])))
                                 {
+
+
 
                                     countPointLineShip++;
                                     error2=1;
@@ -806,6 +892,8 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
                 strPointsShip = strPointsShip + sizeShips[i];
             }
 
+            //qDebug()<<"strPointsShip="<<strPointsShip;
+
             int lineInt = strPointsShip.toInt();
 
             if (lineInt==1)
@@ -859,15 +947,20 @@ void CheckingShips::slot_checkingShips(QStringList stringlist)
 //                //cout << "ERROR! Wrong number of ships!" << endl;
 //            }
 
-    }
-    else
-    {
-            finalError2 = 1;
-        //cout << "ERROR! Wrong position of ships! The ships are touching!" << endl;
-    }
+        ////////////////////////*//////////////////
+
+//    }
+//    else
+//    {
+//            finalError2 = 1;
+//        //cout << "ERROR! Wrong position of ships! The ships are touching!" << endl;
+//    }
 
 
-    emit signal_checkingShipsBack(finalError, errorCheck);
+
+
+
+    emit signal_checkingShipsBack(finalError, errorCheck, redShips);
 
 
     //    if (countRealShip4==countNormalShip4)
